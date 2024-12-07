@@ -10,15 +10,13 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn import metrics
 
 # Load the dictionaries from pickle files
-with open('G:\Shared drives\PhD Manal\Projects\Git\ActiveLearningInAuditing\X_df_norm_dict100.pkl', 'rb') as f:
+with open('cc_output_normative.pkl', 'rb') as f:
     df_norm_dict = pickle.load(f)
-with open('G:\Shared drives\PhD Manal\Projects\Git\ActiveLearningInAuditing\FINAL_df_audit_dict.pkl', 'rb') as f:
+with open('cc_output_auditor.pkl', 'rb') as f:
     df_audit_dict = pickle.load(f)
-with open('G:\Shared drives\PhD Manal\Projects\Git\ActiveLearningInAuditing\FINAL_deviations_dict.pkl', 'rb') as f:
-    deviations_dict = pickle.load(f)
-with open('G:\Shared drives\PhD Manal\Projects\Git\ActiveLearningInAuditing\FINAL_traces_dict.pkl', 'rb') as f:
+with open('pools_deviating_traces_labeled.pkl', 'rb') as f:
     traces_dict = pickle.load(f)
-with open('G:\Shared drives\PhD Manal\Projects\Git\ActiveLearningInAuditing\X_eventlog_dict100.pkl', 'rb') as f:
+with open('eventlogs.pkl', 'rb') as f:
     eventlog_dict = pickle.load(f)
 
 # Input parameters
