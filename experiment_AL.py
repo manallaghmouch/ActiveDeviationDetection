@@ -21,9 +21,6 @@ with open('G:\Shared drives\PhD Manal\Projects\Git\ActiveLearningInAuditing\FINA
 with open('G:\Shared drives\PhD Manal\Projects\Git\ActiveLearningInAuditing\X_eventlog_dict100.pkl', 'rb') as f:
     eventlog_dict = pickle.load(f)
 
-
-
-
 # Input parameters
 num_logs = 100 # number of logs to create and to use for classification
 percentages = 0.05 # percentages = [0.01, 0.02, 0.05]
@@ -213,39 +210,7 @@ for h in range(1, num_logs + 1):
                                 # Increment the iteration count
                                 iteration += 1
 
-                                results_RF_dict[h][deletion_percentage][i][iter_AL] = metrics_dict # last saved metrics (final ones)
-
-
-                                # highest_precision = max(precision_per_iteration)
-                                # highest_recall = max(recall_per_iteration)
-                                # index_of_highest_precision = precision_per_iteration.index(highest_precision) # first occurence of highest
-                                # index_of_highest_recall = recall_per_iteration.index(highest_recall) # first occurence of highest
-
-                                # metrics_dict["initial_precision"] = {}
-                                # metrics_dict["initial_recall"] = {}
-                                # metrics_dict["highest_precision"] = {}
-                                # metrics_dict["highest_recall"] = {}
-                                # metrics_dict["iter_highest_precision"] = {}
-                                # metrics_dict["iter_highest_recall"] = {}
-                                # metrics_dict["iteration_count"] = {}
-                                # metrics_dict["deletion_percentage"] = {}
-                                # metrics_dict["iter_precision_90"] = {}
-                                # metrics_dict["iter_precision_95"] = {}
-                                # metrics_dict["iter_recall_90"] = {}
-                                # metrics_dict["iter_recall_95"] = {}
-
-                                # metrics_dict["initial_precision"][iter_AL] = initial_precision
-                                # metrics_dict["initial_recall"][iter_AL] = initial_recall
-                                # metrics_dict["highest_precision"][iter_AL] = highest_precision
-                                # metrics_dict["highest_recall"][iter_AL] = highest_recall
-                                # metrics_dict["iter_highest_precision"][iter_AL] = index_of_highest_precision
-                                # metrics_dict["iter_highest_recall"][iter_AL] = index_of_highest_recall                               
-                                # metrics_dict["iteration_count"][iter_AL] = iteration - 1
-                                # metrics_dict["deletion_percentage"][iter_AL] = deletion_percentage    
-                                # metrics_dict["iter_precision_90"][iter_AL] = iter_precision_90
-                                # metrics_dict["iter_precision_95"][iter_AL] = iter_precision_95
-                                # metrics_dict["iter_recall_90"][iter_AL] = iter_recall_90
-                                # metrics_dict["iter_recall_95"][iter_AL] = iter_recall_95                        
+                                results_RF_dict[h][deletion_percentage][i][iter_AL] = metrics_dict # last saved metrics (final ones)                       
 
 for h in range(1, num_logs + 1):
     if h in results_RF_dict:
@@ -344,139 +309,8 @@ columns = {
     "F1_score_RF": [],
     "number_of_AL_iter": [],
     "cases_per_iter": [],
-    "total_number_labeled_cases": [],
-    # "iter_precision_90": [],
-    # "iter_precision_95": [],
-    # "iter_recall_90": [],
-    # "iter_recall_95": [],
-    # "initial_precision": [],
-    # "initial_recall": [],
-    # "highest_precision": [],
-    # "highest_recall": [],
-    # "iter_of_highest_precision": [],
-    # "iter_of_highest_recall": []
+    "total_number_labeled_cases": []
 }
 
 combined_df.columns = columns
-combined_df.to_csv('results_1_2_AL.csv', index=False)
-
-# # Save results in csv files
-# for h in range(1, num_logs+1): 
-#     if h in results_RF_dict.keys():
-#         for value in deletion_percentages:
-#             if value in results_RF_dict[h]:
-#                 for i in range(1,number_of_AL_iterations+1):
-#                     if i in results_RF_dict[h][value]:
-#                         for iter_AL in range(1,number_of_AL_iterations+1):
-#                             if iter_AL in results_RF_dict[h][value][i].keys():
-#                                 log_id = h
-#                                 training_set = i 
-#                                 iteration_AL = iter_AL
-#                                 deletion_percentage = value ########
-#                                 num_traces_log = 10000
-#                                 num_events_log = len(eventlog_dict[h])
-#                                 num_activities_model = len(eventlog_dict[h]['concept:name'].unique())
-#                                 num_constraints_norm = len(df_norm_dict[h].columns)
-#                                 num_constraints_audit = len(df_audit_dict[h][value].columns)
-#                                 labeled_population = len(traces_dict[h][value])
-#                                 labeled_sample = len_deviations_dict[h][value][i]
-#                                 perc_anomalies_in_population = 0.05 # perc_anomalies_in_population_dict[h][value][i]
-#                                 perc_anomalies_in_sample = perc_anomalies_in_sample_dict[h][value][i]
-
-#                                 accuracy_RF = results_RF_dict[h][value][i][iter_AL]["accuracy"]
-#                                 precision_RF = results_RF_dict[h][value][i][iter_AL]["precision"]
-#                                 recall_RF = results_RF_dict[h][value][i][iter_AL]["recall"]
-#                                 f1_score_RF = results_RF_dict[h][value][i][iter_AL]["f1_score"]
-
-#                                 # add AL specific results (for this setting fixed)
-#                                 number_AL_iter = number_of_AL_iterations
-#                                 cases_per_iter = number_of_cases_per_iteration
-#                                 total_number_labeled_cases = labeled_sample + (iter_AL * cases_per_iter)
-#                                 # iter_precision_90 = results_RF_dict[h][value][i]["iter_precision_90"][iter_AL]
-#                                 # iter_precision_95 = results_RF_dict[h][value][i]["iter_precision_95"]
-#                                 # iter_recall_90 = results_RF_dict[h][value][i]["iter_recall_90"]
-#                                 # iter_recall_95 = results_RF_dict[h][value][i]["iter_recall_95"]
-#                                 # initial_precision = results_RF_dict[h][value][i]["initial_precision"]
-#                                 # initial_recall = results_RF_dict[h][value][i]["initial_recall"]
-#                                 # highest_precision = results_RF_dict[h][value][i]["highest_precision"]
-#                                 # highest_recall = results_RF_dict[h][value][i]["highest_recall"]
-#                                 # iter_of_highest_precision = results_RF_dict[h][value][i]["iter_highest_precision"]
-#                                 # iter_of_highest_recall = results_RF_dict[h][value][i]["iter_highest_recall"] 
-
-#                                 result = {
-#                                     "log_id": [],
-#                                     "training_set": [],
-#                                     "iteration_AL": [],
-#                                     "deletion_percentage": [],
-#                                     "num_traces_log": [],
-#                                     "num_events_log": [],
-#                                     "num_activities_model": [],
-#                                     "num_constraints_norm": [],
-#                                     "num_constraints_audit": [],
-#                                     "labeled_population":[],
-#                                     "training_set_size":[],
-#                                     "perc_anomalies_in_population":[],
-#                                     "perc_anomalies_in_sample":[],
-#                                     "accuracy_RF": [],
-#                                     "precision_RF": [],
-#                                     "recall_RF": [],
-#                                     "F1_score_RF": [],
-#                                     "number_of_AL_iter": [],
-#                                     "cases_per_iter": [],
-#                                     "total_number_labeled_cases": [],
-#                                     # "iter_precision_90": [],
-#                                     # "iter_precision_95": [],
-#                                     # "iter_recall_90": [],
-#                                     # "iter_recall_95": [],
-#                                     # "initial_precision": [],
-#                                     # "initial_recall": [],
-#                                     # "highest_precision": [],
-#                                     # "highest_recall": [],
-#                                     # "iter_of_highest_precision": [],
-#                                     # "iter_of_highest_recall": []
-#                                 }
-
-#                                 df1 = pd.DataFrame(result)
-#                                 df1.to_csv("test_result_{0}_{1}_{2}_{3}.csv".format(h,value,i, iter_AL), sep=',',index=False)
-
-#                                 fields = [
-#                                     log_id, 
-#                                     training_set, 
-#                                     iteration_AL,
-#                                     deletion_percentage,
-#                                     num_traces_log,
-#                                     num_events_log, 
-#                                     num_activities_model,
-#                                     num_constraints_norm,
-#                                     num_constraints_audit, 
-#                                     labeled_population, 
-#                                     labeled_sample,
-#                                     perc_anomalies_in_population,
-#                                     perc_anomalies_in_sample,
-#                                     accuracy_RF, 
-#                                     precision_RF, 
-#                                     recall_RF, 
-#                                     f1_score_RF, 
-#                                     number_AL_iter,
-#                                     cases_per_iter,
-#                                     total_number_labeled_cases,
-#                                     # iter_precision_90,
-#                                     # iter_precision_95,
-#                                     # iter_recall_90,
-#                                     # iter_recall_95,
-#                                     # initial_precision,
-#                                     # initial_recall,
-#                                     # highest_precision,
-#                                     # highest_recall,
-#                                     # iter_of_highest_precision,
-#                                     # iter_of_highest_recall
-#                                 ]
-
-#                                 with open(r"test_result_{0}_{1}_{2}_{3}.csv".format(h,value,i, iter_AL), 'a') as f:
-#                                     writer = csv.writer(f)
-#                                     writer.writerow(fields)
-
-#                 else:
-#                     pass
-#     else: 
-#         pass
+combined_df.to_csv('results_AL.csv', index=False)
